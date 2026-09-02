@@ -1,0 +1,3 @@
+# Wokwi Library List
+# https://docs.wokwi.com/guides/libraries
+PubSubClient@2.8
