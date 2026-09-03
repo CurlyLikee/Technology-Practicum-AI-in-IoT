@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 50, "left": 40, "attrs": {} },
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 35.4, "left": 175.6, "attrs": {} },
+    { "type": "board-ssd1306", "id": "oled1", "top": -92.86, "left": 230.63, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 313.4,
+      "left": -96,
+      "attrs": { "color": "red", "label": "1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 313.4,
+      "left": 0,
+      "attrs": { "color": "red", "label": "2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 313.4,
+      "left": 105.6,
+      "attrs": { "color": "red", "label": "3" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn4",
+      "top": 313.4,
+      "left": 201.6,
+      "attrs": { "color": "red", "label": "4" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn5",
+      "top": 371,
+      "left": -96,
+      "attrs": { "color": "green", "label": "5" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn6",
+      "top": 371,
+      "left": 0,
+      "attrs": { "color": "green", "label": "6" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn7",
+      "top": 371,
+      "left": 105.6,
+      "attrs": { "color": "green", "label": "7" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn8",
+      "top": 371,
+      "left": 201.6,
+      "attrs": { "color": "green", "label": "8" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn9",
+      "top": 428.6,
+      "left": -96,
+      "attrs": { "color": "blue", "label": "9" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn10",
+      "top": 428.6,
+      "left": 0,
+      "attrs": { "color": "blue", "label": "10" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn11",
+      "top": 428.6,
+      "left": 105.6,
+      "attrs": { "color": "blue", "label": "11" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn12",
+      "top": 428.6,
+      "left": 201.6,
+      "attrs": { "color": "blue", "label": "12" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn13",
+      "top": 486.2,
+      "left": -96,
+      "attrs": { "color": "yellow", "label": "13" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn14",
+      "top": 486.2,
+      "left": 0,
+      "attrs": { "color": "yellow", "label": "14" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn15",
+      "top": 486.2,
+      "left": 105.6,
+      "attrs": { "color": "yellow", "label": "15" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn16",
+      "top": 486.2,
+      "left": 201.6,
+      "attrs": { "color": "yellow", "label": "16" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "bb1:tp.1", "red", [ "v-30.8", "h181.39" ] ],
+    [ "oled1:VCC", "bb1:tp.5", "red", [ "v-19.2", "h-95.85", "v144", "h77.6" ] ],
+    [ "oled1:GND", "bb1:tn.5", "black", [ "v-9.6", "h-76.8", "v124.8", "h76.8", "v28.9" ] ],
+    [ "oled1:SDA", "esp:21", "blue", [ "v-38.4", "h-124.73", "v251.6" ] ],
+    [ "oled1:SCL", "esp:22", "green", [ "v-28.8", "h-123.87", "v213.2" ] ],
+    [ "esp:13", "btn1:1.l", "limegreen", [ "v-2", "h-140.61" ] ],
+    [ "btn1:1.l", "btn2:1.l", "limegreen", [ "v-19.2", "h96" ] ],
+    [ "btn2:1.l", "btn3:1.l", "limegreen", [ "v-19.2", "h105.6" ] ],
+    [ "btn3:1.l", "btn4:1.l", "limegreen", [ "v-19.2", "h96" ] ],
+    [ "esp:12", "btn5:1.l", "green", [ "v-2", "h-159.81", "v192" ] ],
+    [ "btn5:1.l", "btn6:1.l", "green", [ "v-19.2", "h96" ] ],
+    [ "btn6:1.l", "btn7:1.l", "green", [ "v-19.2", "h105.6" ] ],
+    [ "btn7:1.l", "btn8:1.l", "green", [ "v-19.2", "h96" ] ],
+    [ "esp:14", "btn9:1.l", "blue", [ "v-2", "h-169.41", "v259.2" ] ],
+    [ "btn9:1.l", "btn10:1.l", "blue", [ "v-19.2", "h96" ] ],
+    [ "btn10:1.l", "btn11:1.l", "blue", [ "v-19.2", "h105.6" ] ],
+    [ "btn11:1.l", "btn12:1.l", "blue", [ "v-19.2", "h96" ] ],
+    [ "esp:27", "btn13:1.l", "gold", [ "v-2", "h-179.01", "v326.4" ] ],
+    [ "btn13:1.l", "btn14:1.l", "gold", [ "h-38.4", "v57.6", "h124.8", "v-57.6" ] ],
+    [ "btn14:1.l", "btn15:1.l", "gold", [ "h-9.6", "v55", "h96", "v-55" ] ],
+    [ "btn15:1.l", "btn16:1.l", "gold", [ "h-19.2", "v55", "h92.8", "v-55" ] ],
+    [ "esp:26", "btn1:2.l", "white", [ "v-2", "h-188.61", "v182.2" ] ],
+    [ "btn1:2.l", "btn5:2.l", "white", [ "h-48", "v57.6" ] ],
+    [ "btn5:2.l", "btn9:2.l", "white", [ "h-48", "v57.6" ] ],
+    [ "btn9:2.l", "btn13:2.l", "white", [ "h-48", "v57.6" ] ],
+    [ "esp:25", "btn2:2.l", "gray", [ "v-2", "h-63.81", "v191.8" ] ],
+    [ "btn2:2.l", "btn6:2.l", "gray", [ "h-19.2", "v57.6" ] ],
+    [ "btn6:2.l", "btn10:2.l", "gray", [ "h-19.2", "v57.6" ] ],
+    [ "btn10:2.l", "btn14:2.l", "gray", [ "h-19.2", "v57.6" ] ],
+    [ "esp:33", "btn3:2.l", "purple", [ "h-54.21", "v151.6", "h86.4", "v47.8" ] ],
+    [ "btn3:2.l", "btn7:2.l", "purple", [ "h-28.8", "v57.6" ] ],
+    [ "btn7:2.l", "btn11:2.l", "purple", [ "h-28.8", "v57.6" ] ],
+    [ "btn11:2.l", "btn15:2.l", "purple", [ "h-28.8", "v57.6" ] ],
+    [ "esp:32", "btn4:2.l", "orange", [ "h-25.41", "v151.6", "h172.8", "v47.8" ] ],
+    [ "btn4:2.l", "btn8:2.l", "orange", [ "h-9.6", "v67.2" ] ],
+    [ "btn8:2.l", "btn12:2.l", "orange", [ "h-9.6", "v57.6" ] ],
+    [ "btn12:2.l", "btn16:2.l", "orange", [ "h-9.6", "v57.6" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v-2", "h32.04" ] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "v0.3", "h37.6", "v163.2" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h47.2", "v163.2" ] ]
+  ],
+  "dependencies": {}
+}
