@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 35.4, "left": 204.4, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -14.36, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled",
+      "top": -64.06,
+      "left": 317.03,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu", "top": -44.18, "left": 443.92, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn",
+      "top": 144.1,
+      "left": 121.5,
+      "rotate": 270,
+      "attrs": { "color": "blue" }
+    },
+    { "type": "chip-max-30102", "id": "chip2", "top": 279.42, "left": 283.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "oled:SDA", "esp:21", "blue", [ "v-38.4", "h-202.9", "v201.6" ] ],
+    [ "oled:SCL", "esp:22", "green", [ "v-30.46", "h-183.47", "v230.4" ] ],
+    [ "imu:SDA", "esp:21", "blue", [ "v-57.6", "h-307.12", "v201.6" ] ],
+    [ "imu:SCL", "esp:22", "green", [ "v-48", "h-307.12", "v163.2" ] ],
+    [ "btn:1.l", "esp:15", "purple", [ "v0" ] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "h37.6", "v174" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h47.2", "v174.1" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "h105.6", "v-9.5" ] ],
+    [ "bb1:bn.2", "btn:2.l", "black", [ "v27.5", "h-135.2" ] ],
+    [ "esp:3V3", "bb1:tp.1", "red", [ "h0.15", "v-38.4" ] ],
+    [ "bb1:tp.2", "oled:VCC", "red", [ "v-124.5", "h104.65" ] ],
+    [ "bb1:tn.3", "oled:GND", "black", [ "v-124.9", "h85.6" ] ],
+    [ "imu:GND", "bb1:tn.27", "black", [ "v-9.6", "h39.28" ] ],
+    [ "bb1:tp.26", "imu:VCC", "red", [ "v0" ] ],
+    [ "chip2:GND", "bb1:bn.3", "black", [ "h-19.2" ] ],
+    [ "chip2:VCC", "bb1:bp.4", "red", [ "h0" ] ],
+    [ "chip2:OUT", "esp:34", "orange", [ "h11.41", "v28.8", "h-432", "v-220.8" ] ]
+  ],
+  "dependencies": {}
+}
