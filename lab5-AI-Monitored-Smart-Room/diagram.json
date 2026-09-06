@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 6.6, "left": 319.6, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 177.64, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -143.7, "left": 849, "attrs": {} },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -125.1,
+      "left": 685.7,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -130.4,
+      "left": 578.22,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": -138,
+      "left": 407,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res_green",
+      "top": -54.2,
+      "left": 402.35,
+      "rotate": 270,
+      "attrs": { "resistance": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_red",
+      "top": -138,
+      "left": 359,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res_red",
+      "top": -54.2,
+      "left": 354.35,
+      "rotate": 270,
+      "attrs": { "resistance": "220" }
+    },
+    { "type": "wokwi-buzzer", "id": "buzzer1", "top": -141.6, "left": 453, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:SDA", "esp:15", "gold", [ "v48", "h0.1", "v172.8" ] ],
+    [ "res_green:2", "led_green:A", "green", [] ],
+    [ "res_red:2", "led_red:A", "orange", [] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "v0.3", "h47.2", "v173.7" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h37.6", "v174.1" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "esp:3V3", "bb1:tp.1", "red", [ "h0.15", "v-19.2" ] ],
+    [ "esp:19", "res_red:1", "orange", [ "h0" ] ],
+    [ "esp:5", "buzzer1:1", "purple", [ "h0" ] ],
+    [ "esp:18", "res_green:1", "green", [ "h0" ] ],
+    [ "esp:17", "pir1:OUT", "gray", [ "h0" ] ],
+    [ "dht1:VCC", "bb1:tp.45", "red", [ "v57.6" ] ],
+    [ "dht1:GND", "bb1:tn.47", "black", [ "v0" ] ],
+    [ "bb1:tn.2", "led_red:C", "black", [ "v0" ] ],
+    [ "bb1:tn.6", "led_green:C", "black", [ "v0" ] ],
+    [ "bb1:tn.12", "buzzer1:2", "black", [ "v0" ] ],
+    [ "pir1:VCC", "bb1:tp.23", "red", [ "v0" ] ],
+    [ "pir1:GND", "bb1:tn.25", "black", [ "v0" ] ],
+    [ "ldr1:VCC", "bb1:tp.38", "red", [ "v0" ] ],
+    [ "ldr1:GND", "bb1:tn.37", "black", [ "v0" ] ],
+    [ "esp:34", "ldr1:AO", "blue", [ "h-9.45", "v153.6", "h584.9" ] ]
+  ],
+  "dependencies": {}
+}

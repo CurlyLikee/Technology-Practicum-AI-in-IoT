@@ -10,4 +10,6 @@
 | 2 | Лабораторна робота 2. Пристрій для комп'ютера (USB макропад з AI-підказками) | [lab2-USB-MacroPad-with-AI](./lab2-USB-MacroPad-with-AI/) |
 | 3 | Лабораторна робота 3. Смарт-годинник (класифікація активності TinyML) | [lab3-Smart-Watch](./lab3-Smart-Watch/) |
 | 4 | Лабораторна робота 4. Груповий проєкт, ч.1 (ТЗ/схема/макет + AI-архітектура) | [lab4-AI-Monitored-Smart-Room](./lab4-AI-Monitored-Smart-Room/) |
+| 5 | Лабораторна робота 5. Індивідуальний проєкт, ч.2 (MVP/тести/демо + AI) | [lab5-AI-Monitored-Smart-Room](./lab5-AI-Monitored-Smart-Room/) |
+
 
