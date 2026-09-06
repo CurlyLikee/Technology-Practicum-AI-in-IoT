@@ -9,3 +9,5 @@
 | 1 | Лабораторна робота 1. Розумні побутові пристрої (смарт-лампа/розетка з AI) | [lab1-AI-powered-Smart-Lamp](./lab1-AI-powered-Smart-Lamp/) |
 | 2 | Лабораторна робота 2. Пристрій для комп'ютера (USB макропад з AI-підказками) | [lab2-USB-MacroPad-with-AI](./lab2-USB-MacroPad-with-AI/) |
 | 3 | Лабораторна робота 3. Смарт-годинник (класифікація активності TinyML) | [lab3-Smart-Watch](./lab3-Smart-Watch/) |
+| 4 | Лабораторна робота 4. Груповий проєкт, ч.1 (ТЗ/схема/макет + AI-архітектура) | [lab4-AI-Monitored-Smart-Room](./lab4-AI-Monitored-Smart-Room/) |
+
