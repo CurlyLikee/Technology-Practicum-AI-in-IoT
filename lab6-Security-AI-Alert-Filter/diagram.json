@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb1",
+      "top": -31.8,
+      "left": 463.6,
+      "attrs": { "color": "#eeefed" }
+    },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -38.4, "left": 321.64, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -159.2,
+      "left": 664.62,
+      "attrs": {}
+    },
+    { "type": "wokwi-slide-switch", "id": "reed1", "top": -110.8, "left": 886.3, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -170.4,
+      "left": 779.4,
+      "attrs": { "volume": "0.5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_red",
+      "top": -157.2,
+      "left": 503,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": -157.2,
+      "left": 551,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_blue",
+      "top": -157.2,
+      "left": 618.2,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -81.6,
+      "left": 498.65,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -83,
+      "left": 546.35,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -81.6,
+      "left": 613.85,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "v0.3", "h56.8", "v173.7" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h47.2", "v174.1" ] ],
+    [ "pir1:OUT", "esp:19", "gray", [ "v0" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "v19.2", "h172.95", "v-27.9" ] ],
+    [ "esp:18", "bz1:2", "purple", [ "h0" ] ],
+    [ "bb1:tn.27", "bz1:1", "black", [ "v0" ] ],
+    [ "pir1:GND", "bb1:tn.20", "black", [ "v0" ] ],
+    [ "pir1:VCC", "bb1:tp.18", "red", [ "v0" ] ],
+    [ "led_blue:A", "r3:1", "blue", [ "v0" ] ],
+    [ "r3:2", "esp:5", "blue", [ "h0", "v114" ] ],
+    [ "bb1:tn.12", "led_blue:C", "black", [ "v0" ] ],
+    [ "led_green:A", "r2:2", "green", [ "v0" ] ],
+    [ "esp:17", "r2:1", "green", [ "h0" ] ],
+    [ "bb1:tn.6", "led_green:C", "black", [ "v0" ] ],
+    [ "bb1:tn.2", "led_red:C", "black", [ "v0" ] ],
+    [ "led_red:A", "r1:1", "orange", [ "v0" ] ],
+    [ "esp:16", "r1:2", "orange", [ "h0" ] ],
+    [ "esp:4", "reed1:2", "gold", [ "h0" ] ],
+    [ "bb1:tn.35", "reed1:1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
