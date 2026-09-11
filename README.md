@@ -12,6 +12,8 @@
 | 4 | Лабораторна робота 4. Груповий проєкт, ч.1 (ТЗ/схема/макет + AI-архітектура) | [lab4-AI-Monitored-Smart-Room](./lab4-AI-Monitored-Smart-Room/) |
 | 5 | Лабораторна робота 5. Індивідуальний проєкт, ч.2 (MVP/тести/демо + AI) | [lab5-AI-Monitored-Smart-Room](./lab5-AI-Monitored-Smart-Room/) |
 | 6 | Лабораторна робота 6. Безпека дому (AI-антифальш тривог) | [lab6-Security-AI-Alert-Filter](./lab6-Security-AI-Alert-Filter/) |
+| 7 | Лабораторна робота 7. Безпека в громадському транспорті (AI-аналітика заповненості/CO₂) | [lab7-Public-Transport-Safety-AI](./lab7-Public-Transport-Safety-AI/) |
+
 
 
 
