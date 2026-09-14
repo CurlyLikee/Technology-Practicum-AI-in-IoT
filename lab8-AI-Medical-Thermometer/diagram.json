@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 160.2, "left": 156.4, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 153.6, "left": 4.84, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -22.4,
+      "left": 178.4,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay1",
+      "top": 156.6,
+      "left": -169.2,
+      "rotate": 270,
+      "attrs": {}
+    },
+    { "type": "board-ds18b20", "id": "temp1", "top": 123.67, "left": -63.12, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 224.2,
+      "left": -39.25,
+      "rotate": 270,
+      "attrs": { "value": "4700" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 380.4, "left": 32.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 426.35,
+      "left": 67.2,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "h0.15", "v19.2", "h134.4", "v-27.9" ] ],
+    [ "bb1:tn.25", "bb1:bn.25", "black", [ "v-0.1", "h20.8", "v163.2" ] ],
+    [ "bb1:bp.25", "bb1:tp.25", "red", [ "v-0.9", "h30.4", "v-182.4" ] ],
+    [ "lcd1:GND", "bb1:tn.1", "black", [ "h-19.2", "v172.8" ] ],
+    [ "lcd1:VCC", "bb1:tp.1", "red", [ "h-9.6", "v153.7" ] ],
+    [ "esp:22", "lcd1:SCL", "magenta", [ "h48", "v-163.2", "h28.8" ] ],
+    [ "esp:21", "lcd1:SDA", "purple", [ "h38.4", "v-9.6" ] ],
+    [ "esp:GND.1", "relay1:GND", "black", [ "h0" ] ],
+    [ "esp:5V", "relay1:VCC", "red", [ "h0" ] ],
+    [ "temp1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "esp:14", "temp1:DQ", "blue", [ "h0" ] ],
+    [ "esp:GND.1", "temp1:GND", "black", [ "h0" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h-9.45", "v76.8", "h153.6", "v-27.5" ] ],
+    [ "esp:14", "r1:1", "gold", [ "h0" ] ],
+    [ "esp:3V3", "r1:2", "gold", [ "h0" ] ],
+    [ "esp:25", "relay1:IN", "gray", [ "v0", "h-105.45" ] ],
+    [ "esp:GND.1", "led1:C", "black", [ "h-19.05", "v124.8", "h57.2" ] ],
+    [ "led1:A", "r2:1", "orange", [ "v0" ] ],
+    [ "esp:2", "r2:2", "orange", [ "h28.8", "v115.2" ] ]
+  ],
+  "dependencies": {}
+}

@@ -13,6 +13,8 @@
 | 5 | Лабораторна робота 5. Індивідуальний проєкт, ч.2 (MVP/тести/демо + AI) | [lab5-AI-Monitored-Smart-Room](./lab5-AI-Monitored-Smart-Room/) |
 | 6 | Лабораторна робота 6. Безпека дому (AI-антифальш тривог) | [lab6-Security-AI-Alert-Filter](./lab6-Security-AI-Alert-Filter/) |
 | 7 | Лабораторна робота 7. Безпека в громадському транспорті (AI-аналітика заповненості/CO₂) | [lab7-Public-Transport-Safety-AI](./lab7-Public-Transport-Safety-AI/) |
+| 8 | Лабораторна робота 8. Медичний пристрій (навчальні цілі) з AI-фільтрацією | [lab8-AI-Medical-Thermometer](./lab8-AI-Medical-Thermometer/) |
+
 
 
 
