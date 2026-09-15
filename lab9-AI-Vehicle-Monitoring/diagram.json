@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 16.2, "left": 89.2, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 9.6, "left": -71.96, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -152.1,
+      "left": 149.5,
+      "attrs": { "distance": "117" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -160.8,
+      "left": 69,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "chip-gps-neo6m", "id": "chip1", "top": 250.62, "left": -52.8, "attrs": {} },
+    { "type": "wokwi-ili9341", "id": "lcd1", "top": -316, "left": 326.1, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:tn.25", "bb1:bn.25", "black", [ "v-0.1", "h20.8", "v172.8" ] ],
+    [ "bb1:tp.25", "bb1:bp.25", "red", [ "v0.3", "h30.4", "v163.2" ] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "h0.15", "v19.2", "h105.6", "v-27.9" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h-9.45", "v76.8", "h124.8", "v-27.5" ] ],
+    [ "bb1:tn.1", "bz1:2", "black", [ "v-0.1", "h-7.6" ] ],
+    [ "esp:32", "bz1:1", "purple", [ "h-9.45", "v-86.4", "h182.4" ] ],
+    [ "ultrasonic1:GND", "bb1:tn.12", "black", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "bb1:tp.10", "red", [ "v0" ] ],
+    [ "esp:25", "ultrasonic1:TRIG", "#8f4814", [ "h-19.05", "v-163.2", "h317.2" ] ],
+    [ "esp:26", "ultrasonic1:ECHO", "white", [ "h-28.65", "v-163.2", "h336", "v-19.2" ] ],
+    [ "esp:16", "chip1:TX", "cyan", [ "h38.4", "v192" ] ],
+    [ "chip1:RX", "esp:17", "cyan", [ "v0", "h21.01", "v-211.2" ] ],
+    [ "esp:5V", "chip1:VCC", "red", [ "h0.15", "v67.2" ] ],
+    [ "esp:GND.1", "chip1:GND", "black", [ "h-9.45", "v124.8" ] ],
+    [ "lcd1:VCC", "esp:3V3", "red", [ "v19.2", "h-441.6" ] ],
+    [ "lcd1:GND", "bb1:tn.24", "black", [ "v0" ] ],
+    [ "esp:23", "lcd1:MOSI", "green", [ "h0" ] ],
+    [ "esp:18", "lcd1:SCK", "green", [ "h0" ] ],
+    [ "lcd1:LED", "esp:3V3", "red", [ "v28.8", "h-508.81", "v38.4" ] ],
+    [ "esp:19", "lcd1:MISO", "green", [ "h0" ] ],
+    [ "lcd1:CS", "esp:15", "green", [ "v0" ] ],
+    [ "esp:4", "lcd1:RST", "green", [ "h0" ] ],
+    [ "esp:2", "lcd1:D/C", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,20 @@
+{
+  "name": "gps-neo6m",
+  "author": "Альона Павлівна Груєва",
+  "pins": [
+    "VCC",
+    "GND",
+    "RX",
+    "TX"
+  ],
+  "controls": [
+    {
+      "id": "speed",
+      "label": "Vehicle Speed (km/h)",
+      "type": "range",
+      "min": 0,
+      "max": 160,
+      "value": 45
+    }
+  ]
+}

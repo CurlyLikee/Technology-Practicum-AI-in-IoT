@@ -14,6 +14,7 @@
 | 6 | Лабораторна робота 6. Безпека дому (AI-антифальш тривог) | [lab6-Security-AI-Alert-Filter](./lab6-Security-AI-Alert-Filter/) |
 | 7 | Лабораторна робота 7. Безпека в громадському транспорті (AI-аналітика заповненості/CO₂) | [lab7-Public-Transport-Safety-AI](./lab7-Public-Transport-Safety-AI/) |
 | 8 | Лабораторна робота 8. Медичний пристрій (навчальні цілі) з AI-фільтрацією | [lab8-AI-Medical-Thermometer](./lab8-AI-Medical-Thermometer/) |
+| 9 | Лабораторна робота 9. Бортовий комп'ютер (макет) з AI-підказками водію | [lab9-AI-Vehicle-Monitoring](./lab9-AI-Vehicle-Monitoring/) |
 
 
 

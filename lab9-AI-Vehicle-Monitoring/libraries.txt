@@ -1,0 +1,3 @@
+Adafruit GFX Library
+TinyGPSPlus
+Adafruit ILI9341
