@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -108.6, "left": 137.2, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -115.2, "left": 14.44, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -230.1,
+      "left": -63,
+      "attrs": { "temperature": "-18.3", "humidity": "0" }
+    },
+    {
+      "type": "chip-soil-sensor",
+      "id": "chip1",
+      "top": 135.42,
+      "left": -14.4,
+      "attrs": { "moisture": "2650" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 163.4, "left": 489.6, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay2", "top": 240.2, "left": 489.6, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 91.4,
+      "left": 219.8,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot2",
+      "top": 187.4,
+      "left": 229.4,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 140.4,
+      "left": 704.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 195.95,
+      "left": 633.6,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 217.2,
+      "left": 704.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 272.75,
+      "left": 633.6,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:tp.25", "bb1:bp.25", "red", [ "v0.3", "h30.4", "v163.2" ] ],
+    [ "bb1:tn.25", "bb1:bn.25", "black", [ "v-0.1", "h20.8", "v172.8" ] ],
+    [ "esp:3V3", "dht1:VCC", "red", [ "h-67.05" ] ],
+    [ "esp:GND.1", "dht1:GND", "black", [ "h-28.65" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h-38.25", "v86.4", "h9.6" ] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "h-9.45", "v19.2", "h153.6", "v-27.9" ] ],
+    [ "chip1:GND", "esp:GND.1", "black", [ "h-9.6", "v-105.6" ] ],
+    [ "chip1:VCC", "esp:3V3", "red", [ "h-19.2", "v-240" ] ],
+    [ "esp:34", "chip1:A0", "green", [ "h-57.45", "v211.2" ] ],
+    [ "esp:25", "relay1:IN", "magenta", [ "h-76.65", "v211.4" ] ],
+    [ "esp:35", "pot1:SIG", "gold", [ "h-86.25", "v230.4", "h278.4", "v-37.6" ] ],
+    [ "esp:4", "dht1:SDA", "gray", [ "h9.6", "v-134.4", "h-163.2", "v9.6" ] ],
+    [ "esp:26", "relay2:IN", "purple", [ "h-67.05", "v278.6" ] ],
+    [ "esp:32", "pot2:SIG", "orange", [ "h-95.85", "v278.4", "h307.2" ] ],
+    [ "bb1:bp.25", "relay1:VCC", "red", [ "v-0.9", "h30.4", "v96" ] ],
+    [ "bb1:bn.25", "relay1:GND", "black", [ "v-1.3", "h20.8", "v105.6" ] ],
+    [ "bb1:bp.25", "relay2:VCC", "red", [ "v-0.9", "h30.4", "v182.4" ] ],
+    [ "bb1:bn.25", "relay2:GND", "black", [ "v-1.3", "h20.8", "v172.8" ] ],
+    [ "bb1:bp.4", "pot2:VCC", "red", [ "v0" ] ],
+    [ "pot2:GND", "bb1:bn.25", "black", [ "v0", "h14.8", "v-134.4" ] ],
+    [ "pot1:GND", "bb1:bn.25", "black", [ "v0", "h14.8" ] ],
+    [ "bb1:bp.4", "pot1:VCC", "red", [ "v56.7", "h1.6" ] ],
+    [ "bb1:bp.25", "relay1:COM", "red", [ "v-0.9", "h55", "v67.2", "h138.6", "v49.4" ] ],
+    [ "relay1:NO", "r1:1", "cyan", [ "h0" ] ],
+    [ "r1:2", "led1:A", "cyan", [ "h37.2", "v-19.2" ] ],
+    [ "bb1:bn.25", "led1:C", "black", [ "v-1.3", "h251.2", "v105.6", "h9.2" ] ],
+    [ "bb1:bp.25", "relay2:COM", "red", [ "v-0.9", "h55", "v153.6", "h138.6", "v39.8" ] ],
+    [ "relay2:NO", "r2:1", "blue", [ "h0" ] ],
+    [ "r2:2", "led2:A", "blue", [ "v0", "h8.4" ] ],
+    [ "bb1:bn.25", "led2:C", "black", [ "v-1.3", "h251.2", "v182.4", "h28.4" ] ]
+  ],
+  "dependencies": {}
+}

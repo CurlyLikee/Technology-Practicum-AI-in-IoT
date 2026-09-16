@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Smart Agriculture System | Control Panel</title>
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #e5e5e5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    header {
+      background-color: #171717;
+      border: 1px solid #2e2e2e;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .title-block h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .title-block p {
+      font-size: 13px;
+      color: #8c8c8c;
+      margin-top: 3px;
+    }
+
+    .status-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-online {
+      background-color: #064e3b;
+      color: #34d399;
+      border-color: #059669;
+    }
+
+    .badge-offline {
+      background-color: #450a0a;
+      color: #f87171;
+      border-color: #dc2626;
+    }
+
+    .badge-neutral {
+      background-color: #262626;
+      color: #d4d4d4;
+      border-color: #404040;
+    }
+
+    .sensors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: #171717;
+      border: 1px solid #2e2e2e;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .card-title {
+      font-size: 12px;
+      color: #8c8c8c;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .card-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 8px 0;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .card-value .unit {
+      font-size: 14px;
+      color: #8c8c8c;
+      font-weight: 400;
+    }
+
+    .card-bar {
+      width: 100%;
+      height: 6px;
+      background-color: #262626;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .card-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #2563eb;
+      transition: width 0.4s ease;
+    }
+
+    .card-status {
+      font-size: 11px;
+      color: #a3a3a3;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
+      background-color: #171717;
+      border: 1px solid #2e2e2e;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #262626;
+      padding-bottom: 10px;
+    }
+
+    .panel-header h2 {
+      font-size: 15px;
+      color: #ffffff;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .control-item {
+      background-color: #1f1f1f;
+      border: 1px solid #2e2e2e;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-info h3 {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .control-info p {
+      font-size: 12px;
+      color: #8c8c8c;
+      margin-top: 2px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, opacity 0.2s;
+    }
+
+    .btn-green {
+      background-color: #059669;
+      color: #ffffff;
+      border-color: #10b981;
+    }
+
+    .btn-green:hover:not(:disabled) {
+      background-color: #047857;
+    }
+
+    .btn-red {
+      background-color: #dc2626;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+
+    .btn-red:hover:not(:disabled) {
+      background-color: #b91c1c;
+    }
+
+    .btn:disabled {
+      background-color: #262626;
+      color: #737373;
+      border-color: #404040;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .ai-box {
+      background-color: #121212;
+      border: 1px solid #2e2e2e;
+      border-left: 3px solid #059669;
+      border-radius: 4px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #d4d4d4;
+    }
+
+    .ai-box-title {
+      font-weight: 700;
+      color: #34d399;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .console-panel {
+      background-color: #171717;
+      border: 1px solid #2e2e2e;
+      border-radius: 8px;
+      padding: 14px 18px;
+    }
+
+    .console-box {
+      background-color: #0a0a0a;
+      border: 1px solid #262626;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+      color: #4ade80;
+      height: 130px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+
+    .log-line {
+      margin-bottom: 3px;
+    }
+
+    .log-time {
+      color: #737373;
+      margin-right: 8px;
+    }
+
+    .log-err {
+      color: #f87171;
+    }
+
+    .log-sys {
+      color: #60a5fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <header>
+      <div class="title-block">
+        <h1>AI Smart Agriculture System</h1>
+        <p>Real-Time Monitoring & Actuator Control</p>
+      </div>
+      <div class="status-group">
+        <span id="broker-badge" class="badge badge-neutral">Broker: Connecting...</span>
+        <span id="device-badge" class="badge badge-offline">ESP32: OFFLINE</span>
+      </div>
+    </header>
+
+    <div class="sensors-grid">
+      
+      <div class="card">
+        <div class="card-title">Soil Moisture (Capacitive)</div>
+        <div class="card-value">
+          <span id="val-soil-cap">--</span>
+          <span class="unit">%</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-soil-cap" class="card-bar-fill" style="background-color: #059669;"></div>
+        </div>
+        <div class="card-status">
+          <span>Threshold: 30%</span>
+          <span id="status-soil-cap">Waiting...</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Soil Moisture (Resistive)</div>
+        <div class="card-value">
+          <span id="val-soil-res">--</span>
+          <span class="unit">%</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-soil-res" class="card-bar-fill" style="background-color: #2563eb;"></div>
+        </div>
+        <div class="card-status">
+          <span>Secondary Sensor</span>
+          <span id="status-soil-res">Synced</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Air Temperature</div>
+        <div class="card-value">
+          <span id="val-temp">--</span>
+          <span class="unit">°C</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-temp" class="card-bar-fill" style="background-color: #d97706;"></div>
+        </div>
+        <div class="card-status">
+          <span>Fan Trigger: &gt; 30°C</span>
+          <span id="status-temp">Normal</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Air Humidity</div>
+        <div class="card-value">
+          <span id="val-hum">--</span>
+          <span class="unit">%</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-hum" class="card-bar-fill" style="background-color: #2563eb;"></div>
+        </div>
+        <div class="card-status">
+          <span>Relative Humidity</span>
+          <span id="status-hum">Normal</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Soil pH Level</div>
+        <div class="card-value">
+          <span id="val-ph">--</span>
+          <span class="unit">pH</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-ph" class="card-bar-fill" style="background-color: #7c3aed;"></div>
+        </div>
+        <div class="card-status">
+          <span>Optimal: 6.0 - 7.0</span>
+          <span id="status-ph">Neutral</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Irrigation Need (AI)</div>
+        <div class="card-value">
+          <span id="val-score">--</span>
+          <span class="unit">/ 100</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-score" class="card-bar-fill" style="background-color: #059669;"></div>
+        </div>
+        <div class="card-status">
+          <span>Trigger: &ge; 45</span>
+          <span id="status-score">Low Urgency</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">AI 1-Hour Forecast</div>
+        <div class="card-value">
+          <span id="val-pred">--</span>
+          <span class="unit">%</span>
+        </div>
+        <div class="card-bar">
+          <div id="bar-pred" class="card-bar-fill" style="background-color: #059669;"></div>
+        </div>
+        <div class="card-status">
+          <span>VPD: <b id="val-vpd">--</b> kPa</span>
+          <span id="val-drying">-- %/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Parameter Dynamics Over Time</h2>
+          <span style="font-size: 12px; color: #8c8c8c;">Updated every 3s</span>
+        </div>
+        <canvas id="agroChart" height="110"></canvas>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Device Controls</h2>
+          <span id="last-seen-text" style="font-size: 12px; color: #8c8c8c;">Signal: None</span>
+        </div>
+
+        <div class="control-item">
+          <div class="control-info">
+            <h3>Irrigation Pump (Relay 1)</h3>
+            <p id="pump-subtext">GPIO 25 | State: OFF</p>
+          </div>
+          <button id="btn-pump" class="btn btn-green" onclick="togglePump()" disabled>
+            Start Pump
+          </button>
+        </div>
+
+        <div class="control-item">
+          <div class="control-info">
+            <h3>Cooling Fan (Relay 2)</h3>
+            <p id="fan-subtext">GPIO 26 | State: OFF</p>
+          </div>
+          <span id="badge-fan" class="badge badge-neutral">Auto: OFF</span>
+        </div>
+
+        <div class="ai-box">
+          <div class="ai-box-title">AI Diagnostics & Recommendations:</div>
+          <div id="ai-text">
+            Waiting for ESP32 telemetry... Start simulation in Wokwi.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="console-panel">
+      <div class="panel-header">
+        <h2>MQTT Event Log</h2>
+        <span style="font-size: 12px; color: #8c8c8c;">Topic: agro/alona_hruieva/telemetry</span>
+      </div>
+      <div id="consoleBox" class="console-box">
+        <div class="log-line"><span class="log-time">[SYSTEM]</span> Web dashboard loaded. Waiting for broker connection...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    let currentPumpState = 0;
+    let lastPacketTimestamp = 0;
+    const OFFLINE_TIMEOUT_MS = 6500; 
+    const maxPoints = 20;
+    const chartLabels = [];
+    const chartMoist = [];
+    const chartPred = [];
+    const chartTemp = [];
+
+    const ctx = document.getElementById('agroChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: chartLabels,
+        datasets: [
+          {
+            label: 'Soil Moisture (%)',
+            data: chartMoist,
+            borderColor: '#059669',
+            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+            borderWidth: 2,
+            tension: 0.2,
+            fill: true,
+            yAxisID: 'y'
+          },
+          {
+            label: 'AI 1h Forecast (%)',
+            data: chartPred,
+            borderColor: '#7c3aed',
+            borderDash: [4, 4],
+            borderWidth: 2,
+            tension: 0.2,
+            yAxisID: 'y'
+          },
+          {
+            label: 'Temperature (°C)',
+            data: chartTemp,
+            borderColor: '#d97706',
+            borderWidth: 2,
+            tension: 0.2,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        animation: false,
+        layout: {
+          padding: {
+            top: 15,
+            right: 8,
+            bottom: 5,
+            left: 5
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: '#262626' },
+            ticks: { color: '#737373', maxRotation: 0 }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            min: 0,
+            max: 100,
+            grid: { color: '#262626' },
+            ticks: { color: '#a3a3a3' },
+            title: { display: true, text: 'Moisture (%)', color: '#059669', font: { size: 11 } }
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            suggestedMin: -20,
+            suggestedMax: 85,
+            grace: '5%',
+            grid: { drawOnChartArea: false },
+            ticks: { color: '#d97706' },
+            title: { display: true, text: 'Temp (°C)', color: '#d97706', font: { size: 11 } }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: {
+              color: '#d4d4d4',
+              font: { size: 12 },
+              padding: 16
+            }
+          }
+        }
+      }
+    });
+
+    function logMsg(type, text) {
+      const box = document.getElementById('consoleBox');
+      const time = new Date().toLocaleTimeString();
+      const div = document.createElement('div');
+      div.className = 'log-line';
+      let cls = '';
+      if (type === 'ERROR') cls = 'log-err';
+      if (type === 'SYSTEM') cls = 'log-sys';
+      div.innerHTML = `<span class="log-time">[${time}] [${type}]</span> <span class="${cls}">${text}</span>`;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    const brokerWsUrl = 'wss://broker.hivemq.com:8884/mqtt';
+    const topicTelemetry = 'agro/alona_hruieva/telemetry';
+    const topicCommands = 'agro/alona_hruieva/commands';
+    const clientId = 'agro-web-' + Math.floor(Math.random() * 10000);
+
+    logMsg('MQTT', `Connecting to broker ${brokerWsUrl}...`);
+    const client = mqtt.connect(brokerWsUrl, {
+      clientId: clientId,
+      clean: true,
+      connectTimeout: 5000,
+      reconnectPeriod: 2500
+    });
+
+    const brokerBadge = document.getElementById('broker-badge');
+    const deviceBadge = document.getElementById('device-badge');
+    const btnPump = document.getElementById('btn-pump');
+    const lastSeenText = document.getElementById('last-seen-text');
+
+    client.on('connect', () => {
+      brokerBadge.className = 'badge badge-online';
+      brokerBadge.innerText = 'Broker: Connected';
+      logMsg('MQTT', 'Connected to HiveMQ broker. Subscribed to ' + topicTelemetry);
+      client.subscribe(topicTelemetry);
+    });
+
+    client.on('error', (err) => {
+      brokerBadge.className = 'badge badge-offline';
+      brokerBadge.innerText = 'Broker: Error';
+      logMsg('ERROR', err.message);
+    });
+
+    client.on('close', () => {
+      brokerBadge.className = 'badge badge-neutral';
+      brokerBadge.innerText = 'Broker: Disconnected';
+    });
+
+    client.on('message', (topic, payload) => {
+      if (topic === topicTelemetry) {
+        try {
+          const raw = payload.toString();
+          const d = JSON.parse(raw);
+          lastPacketTimestamp = Date.now();
+          updateUI(d);
+          logMsg('TELEMETRY', raw);
+        } catch (e) {
+          logMsg('ERROR', 'Malformed JSON packet: ' + e.message);
+        }
+      }
+    });
+
+    function updateUI(d) {
+      
+      document.getElementById('val-soil-cap').innerText = d.soil_cap;
+      document.getElementById('bar-soil-cap').style.width = d.soil_cap + '%';
+      const statusCap = document.getElementById('status-soil-cap');
+      if (d.soil_cap < 30) {
+        statusCap.innerText = 'Critically Dry';
+        statusCap.style.color = '#f87171';
+      } else if (d.soil_cap > 70) {
+        statusCap.innerText = 'Saturated';
+        statusCap.style.color = '#60a5fa';
+      } else {
+        statusCap.innerText = 'Optimal';
+        statusCap.style.color = '#34d399';
+      }
+
+      document.getElementById('val-soil-res').innerText = d.soil_res;
+      document.getElementById('bar-soil-res').style.width = d.soil_res + '%';
+
+      document.getElementById('val-temp').innerText = d.temp.toFixed(1);
+      document.getElementById('bar-temp').style.width = Math.min(Math.max((d.temp + 10) * 2, 0), 100) + '%';
+      const statusTemp = document.getElementById('status-temp');
+      if (d.temp > 30.0) {
+        statusTemp.innerText = 'Heat Stress (Fan ON)';
+        statusTemp.style.color = '#f87171';
+      } else if (d.temp < 10.0) {
+        statusTemp.innerText = 'Cold';
+        statusTemp.style.color = '#60a5fa';
+      } else {
+        statusTemp.innerText = 'Normal';
+        statusTemp.style.color = '#d4d4d4';
+      }
+
+      document.getElementById('val-hum').innerText = d.hum.toFixed(1);
+      document.getElementById('bar-hum').style.width = d.hum + '%';
+
+      document.getElementById('val-ph').innerText = d.ph.toFixed(2);
+      document.getElementById('bar-ph').style.width = (d.ph / 14 * 100) + '%';
+      const statusPh = document.getElementById('status-ph');
+      if (d.ph < 5.8) {
+        statusPh.innerText = 'Acidic Soil';
+        statusPh.style.color = '#fbbf24';
+      } else if (d.ph > 7.5) {
+        statusPh.innerText = 'Alkaline Soil';
+        statusPh.style.color = '#f87171';
+      } else {
+        statusPh.innerText = 'Optimal Neutral';
+        statusPh.style.color = '#34d399';
+      }
+
+      document.getElementById('val-score').innerText = d.score;
+      document.getElementById('bar-score').style.width = d.score + '%';
+      const statusScore = document.getElementById('status-score');
+      if (d.score >= 45) {
+        statusScore.innerText = 'Irrigation Needed';
+        statusScore.style.color = '#f87171';
+      } else {
+        statusScore.innerText = 'Low Urgency';
+        statusScore.style.color = '#34d399';
+      }
+
+      document.getElementById('val-pred').innerText = d.pred.toFixed(1);
+      document.getElementById('bar-pred').style.width = d.pred + '%';
+      document.getElementById('val-vpd').innerText = d.vpd.toFixed(2);
+      document.getElementById('val-drying').innerText = d.drying.toFixed(2) + ' %/h';
+
+      currentPumpState = d.pump;
+      const pumpSub = document.getElementById('pump-subtext');
+      if (d.pump === 1) {
+        pumpSub.innerText = 'GPIO 25 | State: ACTIVE (PUMPING)';
+        pumpSub.style.color = '#34d399';
+        btnPump.className = 'btn btn-red';
+        btnPump.innerText = 'Stop Pump';
+      } else {
+        pumpSub.innerText = 'GPIO 25 | State: OFF';
+        pumpSub.style.color = '#8c8c8c';
+        btnPump.className = 'btn btn-green';
+        btnPump.innerText = 'Start Pump';
+      }
+
+      const fanSub = document.getElementById('fan-subtext');
+      const badgeFan = document.getElementById('badge-fan');
+      if (d.fan === 1) {
+        fanSub.innerText = 'GPIO 26 | State: ACTIVE (COOLING)';
+        fanSub.style.color = '#34d399';
+        badgeFan.className = 'badge badge-online';
+        badgeFan.innerText = 'Active';
+      } else {
+        fanSub.innerText = 'GPIO 26 | State: OFF';
+        fanSub.style.color = '#8c8c8c';
+        badgeFan.className = 'badge badge-neutral';
+        badgeFan.innerText = 'Auto: OFF';
+      }
+
+      let aiAnalysis = '';
+      if (d.soil_cap < 30) {
+        aiAnalysis += 'Critical root zone drying detected. Irrigation pump automatically activated. ';
+      } else if (d.pred < 30) {
+        aiAnalysis += `VPD (${d.vpd.toFixed(2)} kPa) indicates moisture depletion within 1 hour. Pre-emptive irrigation recommended. `;
+      } else {
+        aiAnalysis += 'Soil hydrothermal state within optimal range. ';
+      }
+      if (d.temp > 30.0) {
+        aiAnalysis += 'Temperature exceeds 30°C. Cooling ventilation active to prevent thermal stress.';
+      }
+      document.getElementById('ai-text').innerText = aiAnalysis;
+
+      const timeStr = new Date().toLocaleTimeString();
+      chartLabels.push(timeStr);
+      chartMoist.push(d.soil_cap);
+      chartPred.push(d.pred);
+      chartTemp.push(d.temp);
+
+      if (chartLabels.length > maxPoints) {
+        chartLabels.shift();
+        chartMoist.shift();
+        chartPred.shift();
+        chartTemp.shift();
+      }
+      chart.update();
+    }
+
+    setInterval(() => {
+      if (lastPacketTimestamp === 0) {
+        deviceBadge.className = 'badge badge-offline';
+        deviceBadge.innerText = 'ESP32: OFFLINE';
+        btnPump.disabled = true;
+        lastSeenText.innerText = 'Signal: None';
+        return;
+      }
+
+      const elapsed = Math.floor((Date.now() - lastPacketTimestamp) / 1000);
+      if (elapsed > 6) {
+        deviceBadge.className = 'badge badge-offline';
+        deviceBadge.innerText = 'ESP32: OFFLINE';
+        btnPump.disabled = true;
+        btnPump.title = 'Device is offline. Start Wokwi simulation.';
+        lastSeenText.innerText = `Signal lost (${elapsed}s ago)`;
+      } else {
+        deviceBadge.className = 'badge badge-online';
+        deviceBadge.innerText = 'ESP32: ONLINE';
+        btnPump.disabled = false;
+        btnPump.title = '';
+        lastSeenText.innerText = `Updated ${elapsed}s ago`;
+      }
+    }, 1000);
+
+    function togglePump() {
+      if (btnPump.disabled) {
+        alert('Cannot send command: ESP32 device is currently offline. Start Wokwi simulation.');
+        return;
+      }
+      const command = (currentPumpState === 1) ? 'PUMP_OFF' : 'PUMP_ON';
+      logMsg('COMMAND', `Sending command [${command}] to ${topicCommands}`);
+      client.publish(topicCommands, command);
+    }
+  </script>
+</body>
+</html>
