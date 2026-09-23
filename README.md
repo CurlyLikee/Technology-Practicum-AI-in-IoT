@@ -17,6 +17,7 @@
 | 9 | Лабораторна робота 9. Бортовий комп'ютер (макет) з AI-підказками водію | [lab9-AI-Vehicle-Monitoring](./lab9-AI-Vehicle-Monitoring/) |
 | 10 | Лабораторна робота 10. Розумна агросистема, ч.1 (сенсори + AI-прогноз) | [lab10-AI-Smart-Agriculture](./lab10-AI-Smart-Agriculture/) |
 | 11 | Лабораторна робота 11. Розумна агросистема, ч.2 (керування + правила + AI) | [lab11-AI-Smart-Agriculture](./lab11-AI-Smart-Agriculture/) |
+| 12 | Лабораторна робота 12. Пристрій з ШІ (класифікація звуку/руху TinyML) | [lab12-Intelligent-Motion-Pattern-Classifier](./lab12-Intelligent-Motion-Pattern-Classifier/) |
 
 
 

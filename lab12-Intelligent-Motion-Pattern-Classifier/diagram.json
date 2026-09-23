@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 150, "attrs": {} },
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 6.6, "left": 300, "attrs": {} },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": 80.62, "left": 31.12, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": -138,
+      "left": 359,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -63.8,
+      "left": 354.35,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_red",
+      "top": -138,
+      "left": 426.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -63.8,
+      "left": 421.55,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -115.1,
+      "left": 524.7,
+      "rotate": 270,
+      "attrs": { "color": "blue" }
+    },
+    { "type": "wokwi-buzzer", "id": "bz1", "top": -141.6, "left": 606.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "v0.3", "h47.2", "v173.7" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h37.6", "v174.1" ] ],
+    [ "esp:3V3", "bb1:tp.1", "red", [ "h0.15", "v-19.2" ] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "bb1:bp.1", "imu1:VCC", "red", [ "h-10", "v27.9", "h-211.2", "v-144", "h-19.28" ] ],
+    [ "bb1:bn.1", "imu1:GND", "black", [ "v27.5", "h-211.6", "v-163.2", "h-38.48" ] ],
+    [ "esp:21", "imu1:SDA", "blue", [ "h18.04", "v-96", "h-192.08" ] ],
+    [ "esp:22", "imu1:SCL", "yellow", [ "h8.44", "v-57.6", "h-172.88" ] ],
+    [ "esp:18", "r1:1", "green", [ "h0" ] ],
+    [ "r1:2", "led_green:A", "green", [ "v0" ] ],
+    [ "esp:19", "r2:1", "orange", [ "h0" ] ],
+    [ "r2:2", "led_red:A", "orange", [ "v0" ] ],
+    [ "esp:15", "btn1:2.l", "blue", [ "h315.44" ] ],
+    [ "esp:23", "bz1:2", "purple", [ "h0" ] ],
+    [ "bb1:tn.26", "bz1:1", "black", [ "v0" ] ],
+    [ "bb1:tn.19", "btn1:1.l", "black", [ "v0" ] ],
+    [ "bb1:tn.4", "led_green:C", "black", [ "v0" ] ],
+    [ "bb1:tn.10", "led_red:C", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
