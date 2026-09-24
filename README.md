@@ -18,6 +18,7 @@
 | 10 | Лабораторна робота 10. Розумна агросистема, ч.1 (сенсори + AI-прогноз) | [lab10-AI-Smart-Agriculture](./lab10-AI-Smart-Agriculture/) |
 | 11 | Лабораторна робота 11. Розумна агросистема, ч.2 (керування + правила + AI) | [lab11-AI-Smart-Agriculture](./lab11-AI-Smart-Agriculture/) |
 | 12 | Лабораторна робота 12. Пристрій з ШІ (класифікація звуку/руху TinyML) | [lab12-Intelligent-Motion-Pattern-Classifier](./lab12-Intelligent-Motion-Pattern-Classifier/) |
+| 13 | Лабораторна робота 13. Робот-розміновувач (AI-обробка зображення, безпека) | [lab13-Hazard-Ordnance-Disposal-Rover](./lab13-Hazard-Ordnance-Disposal-Rover/) |
 
 
 

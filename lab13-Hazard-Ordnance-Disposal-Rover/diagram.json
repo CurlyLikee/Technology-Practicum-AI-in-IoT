@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 48, "left": -129.56, "attrs": {} },
+    { "type": "wokwi-breadboard", "id": "bb1", "top": 54.6, "left": 60.4, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -113.7,
+      "left": -71.3,
+      "attrs": { "distance": "75" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -70.8,
+      "left": 186.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 13,
+      "left": 181.55,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-servo", "id": "servo1", "top": -40, "left": 740, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo2", "top": 55.6, "left": 739.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo3", "top": 161.2, "left": 739.2, "attrs": {} },
+    { "type": "wokwi-servo", "id": "servo4", "top": 257.2, "left": 739.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:tp.50", "bb1:bp.50", "red", [ "h47.2", "v174" ] ],
+    [ "esp:5", "ultrasonic1:TRIG", "purple", [ "h38.4", "v-182.4" ] ],
+    [ "esp:18", "ultrasonic1:ECHO", "gold", [ "h48", "v-172.8" ] ],
+    [ "esp:21", "r1:1", "orange", [ "h0" ] ],
+    [ "r1:2", "led1:A", "orange", [ "v0" ] ],
+    [ "led1:C", "bb1:tn.10", "black", [ "v0" ] ],
+    [ "bb1:tn.50", "bb1:bn.50", "black", [ "v-0.1", "h37.6", "v174.1" ] ],
+    [ "esp:15", "servo4:PWM", "green", [ "v-2", "h67.2", "v110.2" ] ],
+    [ "esp:2", "servo3:PWM", "violet", [ "h76.8", "v17.8" ] ],
+    [ "esp:4", "servo2:PWM", "blue", [ "h748.8", "v-67.4" ] ],
+    [ "esp:GND.1", "bb1:bn.1", "black", [ "h-19.05", "v76.8", "h250.4" ] ],
+    [ "esp:5V", "bb1:bp.1", "red", [ "h-9.45", "v19.2", "h220.8", "v-28.8", "h20" ] ],
+    [ "esp:16", "servo1:PWM", "cyan", [ "h720", "v-96" ] ],
+    [ "servo4:V+", "bb1:bp.46", "red", [ "h0" ] ],
+    [ "servo4:GND", "bb1:bn.47", "black", [ "h0" ] ],
+    [ "servo3:GND", "bb1:bn.48", "black", [ "h-19.2", "v38.4", "h0", "v19.2", "h-57.6" ] ],
+    [ "servo3:V+", "bb1:bp.49", "red", [ "h-86.4", "v0.1" ] ],
+    [ "servo1:GND", "bb1:tn.46", "black", [ "h0" ] ],
+    [ "servo1:V+", "bb1:tp.47", "red", [ "h0" ] ],
+    [ "servo2:GND", "bb1:tn.48", "black", [ "h0" ] ],
+    [ "servo2:V+", "bb1:tp.49", "red", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "bb1:tp.1", "red", [ "v0" ] ],
+    [ "ultrasonic1:GND", "bb1:tn.1", "black", [ "v96", "h8.4" ] ]
+  ],
+  "dependencies": {}
+}
