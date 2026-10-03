@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb1",
+      "top": 60,
+      "left": 80,
+      "attrs": {}
+    },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 90,
+      "left": -140,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": -44.8,
+      "left": 502.4,
+      "rotate": 270,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -140,
+      "left": 220,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -70.8,
+      "left": 320.6,
+      "attrs": {
+        "color": "cyan"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "res1",
+      "top": 13,
+      "left": 315.95,
+      "rotate": 270,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-microsd-card",
+      "id": "sd1",
+      "top": -18.97,
+      "left": -115.13,
+      "attrs": {}
+    },
+    {
+      "type": "chip-gps-neo6m",
+      "id": "chip1",
+      "top": -8.58,
+      "left": 62.4,
+      "attrs": {
+        "speed": "0"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:5V",
+      "bb1:bp.1",
+      "red",
+      [
+        "h-10",
+        "v15.6",
+        "h241.39",
+        "v-60.9"
+      ]
+    ],
+    [
+      "bb1:tp.50",
+      "bb1:bp.50",
+      "red",
+      [
+        "h47.2",
+        "v174"
+      ]
+    ],
+    [
+      "bb1:tn.50",
+      "bb1:bn.50",
+      "black",
+      [
+        "v-0.1",
+        "h37.6",
+        "v174.1"
+      ]
+    ],
+    [
+      "sd1:VCC",
+      "bb1:tp.1",
+      "red",
+      [
+        "h86.4",
+        "v43.64"
+      ]
+    ],
+    [
+      "sd1:GND",
+      "bb1:tn.1",
+      "black",
+      [
+        "h67.2",
+        "v72.81"
+      ]
+    ],
+    [
+      "sd1:CS",
+      "esp:5",
+      "violet",
+      [
+        "h9.6",
+        "v157.26"
+      ]
+    ],
+    [
+      "sd1:SCK",
+      "esp:18",
+      "orange",
+      [
+        "h28.8",
+        "v176.39"
+      ]
+    ],
+    [
+      "sd1:DO",
+      "esp:19",
+      "green",
+      [
+        "h38.4",
+        "v186.11"
+      ]
+    ],
+    [
+      "sd1:DI",
+      "esp:23",
+      "blue",
+      [
+        "h19.2",
+        "v89.91"
+      ]
+    ],
+    [
+      "chip1:TX",
+      "esp:16",
+      "turquoise",
+      [
+        "h21.01",
+        "v48",
+        "h-124.8",
+        "v176.4"
+      ]
+    ],
+    [
+      "chip1:RX",
+      "esp:17",
+      "gray",
+      [
+        "h11.41",
+        "v45",
+        "h-105.6",
+        "v160.2"
+      ]
+    ],
+    [
+      "bz1:1",
+      "esp:25",
+      "purple",
+      [
+        "v27.2",
+        "h-400.6",
+        "v224.4"
+      ]
+    ],
+    [
+      "res1:1",
+      "esp:21",
+      "cyan",
+      [
+        "v157.2"
+      ]
+    ],
+    [
+      "res1:2",
+      "led1:A",
+      "cyan",
+      [
+        "v-20"
+      ]
+    ],
+    [
+      "btn1:2.r",
+      "esp:4",
+      "gold",
+      [
+        "v-13.4",
+        "h23",
+        "v297.6",
+        "h-605.64"
+      ]
+    ],
+    [
+      "bb1:tn.1",
+      "chip1:GND",
+      "black",
+      [
+        "v-5.5",
+        "h-97.2",
+        "v-67.2"
+      ]
+    ],
+    [
+      "bb1:tp.1",
+      "chip1:VCC",
+      "red",
+      [
+        "v-5.1",
+        "h-78",
+        "v-67.2"
+      ]
+    ],
+    [
+      "bz1:2",
+      "bb1:tn.13",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "bb1:tn.20",
+      "led1:C",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "bb1:tn.36",
+      "btn1:1.l",
+      "black",
+      [
+        "h-10.8",
+        "v-69.1"
+      ]
+    ],
+    [
+      "esp:GND.2",
+      "bb1:tn.1",
+      "black",
+      [
+        "h164.04",
+        "v-36.5"
+      ]
+    ]
+  ]
+}

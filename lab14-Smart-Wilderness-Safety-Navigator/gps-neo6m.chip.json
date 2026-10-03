@@ -1,0 +1,20 @@
+{
+  "name": "gps-neo6m",
+  "author": "Alona Hruieva",
+  "pins": [
+    "VCC",
+    "GND",
+    "RX",
+    "TX"
+  ],
+  "controls": [
+    {
+      "id": "speed",
+      "label": "Travel Speed km/h",
+      "type": "range",
+      "min": 0,
+      "max": 120,
+      "value": 0
+    }
+  ]
+}
