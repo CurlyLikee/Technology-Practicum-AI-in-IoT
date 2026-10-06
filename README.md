@@ -20,3 +20,4 @@
 | 12 | Лабораторна робота 12. Пристрій з ШІ (класифікація звуку/руху TinyML) | [lab12-Intelligent-Motion-Pattern-Classifier](./lab12-Intelligent-Motion-Pattern-Classifier/) |
 | 13 | Лабораторна робота 13. Робот-розміновувач (AI-обробка зображення, безпека) | [lab13-Hazard-Ordnance-Disposal-Rover](./lab13-Hazard-Ordnance-Disposal-Rover/) |
 | 14 | Лабораторна робота 14. Подорожі (GPS-трекер/SOS + AI-аналітика) | [lab14-Smart-Wilderness-Safety-Navigator](./lab14-Smart-Wilderness-Safety-Navigator/) |
+| 15 | Лабораторна робота 15. Власна ідея, ч.1 (дизайн рішення + AI-кейс) | [lab15-Industrial-Machinery-Vibration-Diagnostic-Monitor](./lab15-Industrial-Machinery-Vibration-Diagnostic-Monitor/) |

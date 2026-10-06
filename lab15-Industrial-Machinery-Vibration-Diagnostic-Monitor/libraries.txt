@@ -1,0 +1,5 @@
+Adafruit SSD1306
+Adafruit GFX Library
+Adafruit MPU6050
+Adafruit Unified Sensor
+SD
