@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 50,
+      "left": -140,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb1",
+      "top": 50,
+      "left": 60,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": -170,
+      "left": 140,
+      "attrs": {
+        "pins": "i2c"
+      }
+    },
+    {
+      "type": "board-ds18b20",
+      "id": "ds1",
+      "top": -140,
+      "left": -60,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -150,
+      "left": 30,
+      "attrs": {
+        "volume": "0.1"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": -145,
+      "left": 480,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_mode",
+      "top": 150,
+      "left": 140,
+      "rotate": 270,
+      "attrs": {
+        "color": "blue",
+        "label": "Mode"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_start",
+      "top": 150,
+      "left": 250,
+      "rotate": 270,
+      "attrs": {
+        "color": "green",
+        "label": "Start"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn_reset",
+      "top": 150,
+      "left": 360,
+      "rotate": 270,
+      "attrs": {
+        "color": "yellow",
+        "label": "Reset"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:3V3",
+      "bb1:tp.1",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:GND.1",
+      "bb1:tn.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:5V",
+      "bb1:bp.1",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:GND.2",
+      "bb1:bn.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "bb1:tp.50",
+      "bb1:bp.50",
+      "red",
+      [
+        "h47.2",
+        "v174"
+      ]
+    ],
+    [
+      "bb1:tn.50",
+      "bb1:bn.50",
+      "black",
+      [
+        "v-0.1",
+        "h37.6",
+        "v174.1"
+      ]
+    ],
+    [
+      "ds1:GND",
+      "bb1:tn.2",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "ds1:VCC",
+      "bb1:tp.2",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:14",
+      "ds1:DQ",
+      "purple",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "bz1:1",
+      "bb1:tn.5",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:27",
+      "bz1:2",
+      "violet",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "lcd:GND",
+      "bb1:tn.12",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "lcd:VCC",
+      "bb1:tp.12",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:21",
+      "lcd:SDA",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:22",
+      "lcd:SCL",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "pot1:GND",
+      "bb1:tn.42",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "pot1:VCC",
+      "bb1:tp.43",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:34",
+      "pot1:SIG",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "btn_mode:2.l",
+      "bb1:bn.9",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:32",
+      "btn_mode:1.r",
+      "gold",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "btn_start:2.l",
+      "bb1:bn.20",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:33",
+      "btn_start:1.r",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "btn_reset:2.l",
+      "bb1:bn.31",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:25",
+      "btn_reset:1.r",
+      "cyan",
+      [
+        "v0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}

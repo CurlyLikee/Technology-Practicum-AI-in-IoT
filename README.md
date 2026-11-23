@@ -22,4 +22,5 @@
 | 14 | Лабораторна робота 14. Подорожі (GPS-трекер/SOS + AI-аналітика) | [lab14-Smart-Wilderness-Safety-Navigator](./lab14-Smart-Wilderness-Safety-Navigator/) |
 | 15 | Лабораторна робота 15. Власна ідея, ч.1 (дизайн рішення + AI-кейс) | [lab15-Industrial-Machinery-Vibration-Diagnostic-Monitor](./lab15-Industrial-Machinery-Vibration-Diagnostic-Monitor/) |
 | 16 | Лабораторна робота 16. Власна ідея, ч.2 (реалізація + метрики AI) | [lab16-Industrial-Machinery-Vibration-Diagnostic-Monitor](./lab16-Industrial-Machinery-Vibration-Diagnostic-Monitor/) |
+| 17 | Лабораторна робота 17. Кухонний пристрій (ваги/таймер/термометр + AI) | [lab17-Smart-Culinary-Precision-Assistant](./lab17-Smart-Culinary-Precision-Assistant/) |
 | 18 | Лабораторна робота 18. Безпека медустанов (RFID + журнал + AI-аудит) | [lab18-Intelligent-Healthcare-Entry-Sentinel](./lab18-Intelligent-Healthcare-Entry-Sentinel/) |
