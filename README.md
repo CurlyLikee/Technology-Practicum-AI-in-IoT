@@ -26,3 +26,4 @@
 | 18 | Лабораторна робота 18. Безпека медустанов (RFID + журнал + AI-аудит) | [lab18-Intelligent-Healthcare-Entry-Sentinel](./lab18-Intelligent-Healthcare-Entry-Sentinel/) |
 | 19 | Лабораторна робота 19. Агро-комплекс (модульна система + AI-оптимізація) | [lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller](./lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller/) |
 | 20 | Лабораторна робота 20. Малий бізнес, ч.1 (збір даних/черга + AI-звіти) | [lab20-Intelligent-Customer-Queue-and-Traffic-Forecaster](./lab20-Intelligent-Customer-Queue-and-Traffic-Forecaster/) |
+| 21 | Лабораторна робота 21. Малий бізнес, ч.2 (керування/розклади + AI) | [lab21-Intelligent-Customer-Queue-and-Traffic-Forecaster](./lab21-Intelligent-Customer-Queue-and-Traffic-Forecaster/) |
