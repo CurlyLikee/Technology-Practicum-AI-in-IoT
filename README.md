@@ -25,3 +25,4 @@
 | 17 | Лабораторна робота 17. Кухонний пристрій (ваги/таймер/термометр + AI) | [lab17-Smart-Culinary-Precision-Assistant](./lab17-Smart-Culinary-Precision-Assistant/) |
 | 18 | Лабораторна робота 18. Безпека медустанов (RFID + журнал + AI-аудит) | [lab18-Intelligent-Healthcare-Entry-Sentinel](./lab18-Intelligent-Healthcare-Entry-Sentinel/) |
 | 19 | Лабораторна робота 19. Агро-комплекс (модульна система + AI-оптимізація) | [lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller](./lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller/) |
+| 20 | Лабораторна робота 20. Малий бізнес, ч.1 (збір даних/черга + AI-звіти) | [lab20-Intelligent-Customer-Queue-and-Traffic-Forecaster](./lab20-Intelligent-Customer-Queue-and-Traffic-Forecaster/) |
