@@ -24,3 +24,4 @@
 | 16 | Лабораторна робота 16. Власна ідея, ч.2 (реалізація + метрики AI) | [lab16-Industrial-Machinery-Vibration-Diagnostic-Monitor](./lab16-Industrial-Machinery-Vibration-Diagnostic-Monitor/) |
 | 17 | Лабораторна робота 17. Кухонний пристрій (ваги/таймер/термометр + AI) | [lab17-Smart-Culinary-Precision-Assistant](./lab17-Smart-Culinary-Precision-Assistant/) |
 | 18 | Лабораторна робота 18. Безпека медустанов (RFID + журнал + AI-аудит) | [lab18-Intelligent-Healthcare-Entry-Sentinel](./lab18-Intelligent-Healthcare-Entry-Sentinel/) |
+| 19 | Лабораторна робота 19. Агро-комплекс (модульна система + AI-оптимізація) | [lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller](./lab19-Smart-Greenhouse-Climate-and-Irrigation-Controller/) |

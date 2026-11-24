@@ -1,0 +1,317 @@
+{
+  "version": 1,
+  "author": "Альона Павлівна Груєва",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 50,
+      "left": -140,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-breadboard",
+      "id": "bb1",
+      "top": 50,
+      "left": 60,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -170,
+      "left": 140,
+      "attrs": {
+        "pins": "i2c"
+      }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -160,
+      "left": -50,
+      "attrs": {
+        "temperature": "26.5",
+        "humidity": "48.0"
+      }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -160,
+      "left": 450,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot1",
+      "top": 270,
+      "left": 150,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_pump",
+      "top": 20,
+      "left": 740,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_vent",
+      "top": 120,
+      "left": 740,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relay_light",
+      "top": 220,
+      "left": 740,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "esp:3V3",
+      "bb1:tp.1",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:GND.1",
+      "bb1:tn.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:5V",
+      "bb1:bp.1",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:GND.2",
+      "bb1:bn.1",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "bb1:tp.50",
+      "bb1:bp.50",
+      "red",
+      [
+        "h47.2",
+        "v174"
+      ]
+    ],
+    [
+      "bb1:tn.50",
+      "bb1:bn.50",
+      "black",
+      [
+        "v-0.1",
+        "h37.6",
+        "v174.1"
+      ]
+    ],
+    [
+      "dht1:GND",
+      "bb1:tn.3",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "dht1:VCC",
+      "bb1:tp.3",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:15",
+      "dht1:SDA",
+      "green",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "lcd1:GND",
+      "bb1:tn.12",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "lcd1:VCC",
+      "bb1:tp.12",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:21",
+      "lcd1:SDA",
+      "cyan",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:22",
+      "lcd1:SCL",
+      "blue",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "ldr1:GND",
+      "bb1:tn.38",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "ldr1:VCC",
+      "bb1:tp.38",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:34",
+      "ldr1:AO",
+      "orange",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "pot1:GND",
+      "bb1:bn.10",
+      "black",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "pot1:VCC",
+      "bb1:bp.10",
+      "red",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "esp:35",
+      "pot1:SIG",
+      "purple",
+      [
+        "v0"
+      ]
+    ],
+    [
+      "relay_pump:VCC",
+      "bb1:tp.47",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay_pump:GND",
+      "bb1:tn.46",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:18",
+      "relay_pump:IN",
+      "blue",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay_vent:VCC",
+      "bb1:tp.48",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay_vent:GND",
+      "bb1:tn.48",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:5",
+      "relay_vent:IN",
+      "violet",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay_light:VCC",
+      "bb1:bp.46",
+      "red",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "relay_light:GND",
+      "bb1:bn.47",
+      "black",
+      [
+        "h0"
+      ]
+    ],
+    [
+      "esp:17",
+      "relay_light:IN",
+      "gold",
+      [
+        "h0"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}
